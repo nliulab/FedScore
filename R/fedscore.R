@@ -640,173 +640,36 @@ get_federatedLR <- function(method = 1, data_matrix, sitenameL, sitenameR_list, 
 
 
 
-
-# Internal function in AutoScore:
-#' @title Internal function: Calculate cut_vec from the training set (AutoScore Module 2)
-#' @param df training set to be used for calculate the cut vector
-#' @param categorize  Methods for categorize continuous variables. Options include "quantile" or "kmeans" (Default: "quantile").
-#' @param quantiles Predefined quantiles to convert continuous variables to categorical ones. (Default: c(0, 0.05, 0.2, 0.8, 0.95, 1)) Available if \code{categorize = "quantile"}.
-#' @param max_cluster The max number of cluster (Default: 5). Available if \code{categorize = "kmeans"}.
-#' @return cut_vec for \code{transform_df_fixed}
-get_cut_vec <-
-  function(df,
-           quantiles = c(0, 0.05, 0.2, 0.8, 0.95, 1),
-           #by default
-           max_cluster = 5,
-           categorize = "quantile") {
-    # Generate cut_vec for downstream usage
-    cut_vec <- list()
-    
-    for (i in setdiff(names(df), c("label", "label_time", "label_status"))) {
-      # for factor variable
-      if (is.factor(df[, i])) {
-        if (length(levels(df[, i])) < 10)
-          #(next)() else stop("ERROR: The number of categories should be less than 10")
-          (next)()
-        else
-          warning("WARNING: The number of categories should be less than 10",
-                  i)
-      }
-      
-      ## mode 1 - quantiles
-      if (categorize == "quantile") {
-        # options(scipen = 20)
-        #print("in quantile")
-        cut_off_tmp <- quantile(df[, i], quantiles, na.rm=T)
-        cut_off_tmp <- unique(cut_off_tmp)
-        cut_off <- signif(cut_off_tmp, 3)  # remain 3 digits
-        #print(cut_off)
-        
-        ## mode 2 k-means clustering
-      } else if (categorize == "k_means") {
-        #print("using k-means")
-        clusters <- kmeans(na.omit(df[, i]), max_cluster)
-        cut_off_tmp <- c()
-        for (j in unique(clusters$cluster)) {
-          #print(min(df[,i][clusters$cluster==j]))
-          #print(length(df[,i][clusters$cluster==j]))
-          cut_off_tmp <-
-            append(cut_off_tmp, min(df[, i][clusters$cluster == j], na.rm=T))
-          #print(cut_off_tmp)
-        }
-        cut_off_tmp <- append(cut_off_tmp, max(df[, i], na.rm=T))
-        cut_off_tmp <- sort(cut_off_tmp)
-        #print(names(df)[i])
-        #assert (length(cut_off_tmp) == 6)
-        cut_off_tmp <- unique(cut_off_tmp)
-        cut_off <- signif(cut_off_tmp, 3)
-        cut_off <- unique(cut_off)
-        #print (cut_off)
-        
-      } else {
-        stop('ERROR: please specify correct method for categorizing:  "quantile" or "k_means".')
-      }
-      
-      l <- list(cut_off)
-      names(l)[1] <- i
-      cut_vec <- append(cut_vec, l)
-      #print("****************************cut_vec*************************")
-      #print(cut_vec)
-    }
-    ## delete min and max for each cut-off (min and max will be captured in the new dataset)
-    if (length(cut_vec) != 0) { ## in case all the variables are categorical
-      for (i in 1:length(cut_vec)) {
-        if (length(cut_vec[[i]]) <= 2)
-          cut_vec[[i]] <- c("let_binary")
-        else
-          cut_vec[[i]] <- cut_vec[[i]][2:(length(cut_vec[[i]]) - 1)]
-      }
-    }
-    return(cut_vec)
-    
+######################################################
+# get federated ranking
+# weights: either default setting using 1/K or user specified standardized weights (sum of weights eqauls to 1)
+AutoScore_Frank <- function(weight = "default", K = 2){
+  # loop through files in the "outputs/ranks/" folder:
+  files = list.files(path = "outputs/ranks/", pattern="*.csv")
+  rank = read.csv(paste("outputs/ranks/", files[1], sep = ""))
+  char = gsub("\\..*","",files[1])
+  colnames(rank) = c("var", paste("imp", char,sep = ""), char)
+  tbl = rank
+  for(i in 2:length(files)){
+    rank = read.csv(paste("outputs/ranks/", files[i], sep = ""))
+    char = gsub("\\..*","",files[i])
+    colnames(rank) = c("var", paste("imp", char,sep = ""), char)
+    tbl = left_join(tbl, rank)
   }
-
-
-
-# Internal function in AutoScore
-#' @title Internal function: Categorizing continuous variables based on cut_vec (AutoScore Module 2)
-#' @param df dataset(training, validation or testing) to be processed
-#' @param cut_vec fixed cut vector
-#' @return  Processed \code{data.frame} after categorizing based on fixed cut_vec
-#' @export
-transform_df_fixed <- function(df, cut_vec) {
-  j <- 1
-  
-  # for loop going through all variables
-  for (i in setdiff(names(df), c("label", "label_time", "label_status"))) {
-    if (is.factor(df[, i])) {
-      df[, i] <- factor(car::recode(var = df[, i], recodes = "NA = 'Unknown'"))
-      if (length(levels(df[, i])) < 10)
-        (next)()
-      else
-        stop("ERROR: The number of categories should be less than 9")
-    }
-    
-    ## make conresponding cutvec for validation_set: cut_vec_new
-    #df<-validation_set_1
-    #df<-train_set_1
-    vec <- df[, i]
-    cut_vec_new <- cut_vec[[j]]
-    
-    if (cut_vec_new[1] == "let_binary") {
-      vec[vec != getmode(vec)] <- paste0("not_", getmode(vec))
-      vec <- as.factor(vec)
-      df[, i] <- vec
-    } else{
-      if (min(vec, na.rm=T) < cut_vec[[j]][1])
-        cut_vec_new <- c(floor(min(df[, i], na.rm=T)) - 100, cut_vec_new)
-      if (max(vec, na.rm=T) >= cut_vec[[j]][length(cut_vec[[j]])])
-        cut_vec_new <- c(cut_vec_new, ceiling(max(df[, i], na.rm=T) + 100))
-      
-      cut_vec_new_tmp <- signif(cut_vec_new, 3)
-      cut_vec_new_tmp <- unique(cut_vec_new_tmp)  ###revised update##
-      df_i_tmp <-  cut(
-        df[, i],
-        breaks = cut_vec_new_tmp,
-        right = F,
-        include.lowest = F,
-        dig.lab = 3
-      )
-      # xmin<-as.character(min(cut_vec_new_tmp)) xmax<-as.character(max(cut_vec_new_tmp))
-      
-      ## delete min and max for the Interval after discretion: validation_set
-      if (min(vec, na.rm=T) < cut_vec[[j]][1])
-        levels(df_i_tmp)[1] <- gsub(".*,", "(,", levels(df_i_tmp)[1])
-      if (max(vec, na.rm=T) >= cut_vec[[j]][length(cut_vec[[j]])])
-        levels(df_i_tmp)[length(levels(df_i_tmp))] <-
-        gsub(",.*", ",)", levels(df_i_tmp)[length(levels(df_i_tmp))])
-      
-      df[, i] <- as.factor(ifelse(is.na(df[, i]), "*Unknown", as.character(df_i_tmp)))
-      
-    }
-    
-    j <- j + 1
+  dat = select(tbl, matches("^rank")) %>% as.matrix
+  if(typeof(weight) == "character"){
+    rank_fed = dat %*% rep(1/K, K)
   }
-  return(df)
+  else{
+    if(!sum(weight)==1){
+      print("error! Input for 'weight' should be either a vector of standardized weights or use default option")
+    }
+    rank_fed = dat %*% weight
+  }
+  tbl$rank_fed = rank_fed
+  return(tbl)
 }
 
 
 
-# Internal function of AutoScore
-#' @title Internal Function: Add baselines after second-step logistic regression (part of AutoScore Module 3)
-#' @param df A \code{data.frame} used for logistic regression
-#' @param coef_vec Generated from logistic regression
-#' @return Processed \code{vector} for generating the scoring table
-add_baseline <- function(df, coef_vec) {
-  names(coef_vec) <- gsub("[`]", "", names(coef_vec)) # remove the possible "`" in the names
-  df <- subset(df, select = names(df)[!names(df) %in% c("label", "label_time", "label_status")])
-  coef_names_all <- unlist(lapply(names(df), function(var_name) {
-    paste0(var_name, levels(df[, var_name]))
-  }))
-  coef_vec_all <- numeric(length(coef_names_all))
-  names(coef_vec_all) <- coef_names_all
-  # Remove items in coef_vec that are not meant to be in coef_vec_all
-  # (i.e., the intercept)
-  coef_vec_core <-
-    coef_vec[which(names(coef_vec) %in% names(coef_vec_all))]
-  i_coef <-
-    match(x = names(coef_vec_core),
-          table = names(coef_vec_all))
-  coef_vec_all[i_coef] <- coef_vec_core
-  coef_vec_all
-}
+
