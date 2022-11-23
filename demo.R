@@ -1,14 +1,17 @@
 ##### 
 ##### 
-# This is a demo using two subsets of data cleaned from MIMIC-IV
-# See data details at https://github.com/nliulab/mimic4ed-benchmark
-# The outcome is hospitalization.
+# This is a demo using two subsets of ED data cleaned from MIMIC-IV (https://physionet.org/content/mimiciv/0.4/)
+# See data pre-processing details at https://github.com/nliulab/mimic4ed-benchmark
+# The outcome used in this demo is hospitalization (binary).
 ##### 
 library(AutoScore)
 library(tidyverse)
 library(ggplot2)
+library(mle.tools)
+library(rjson)
 
-setwd("/Users/siqili/Desktop/Duke-Nus/research/FedScore_code/FedScore/")
+source("R/fedscore.R")
+source("R/helpers.R")
 
 ##### Import data:
 dat1 <- read.csv("SampleData/sample1.csv")
