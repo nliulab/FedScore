@@ -1,44 +1,29 @@
-FedScore: A privacy-preserving framework for federated scoring system development
-=========================
+# FedScore: A privacy-preserving framework for federated scoring system development
 
-R and Python code for the proposed FedScore for generation of scoring systems across multiple sites in a privacy preserving way. 
-<br>
-See our new [Preprint](https://arxiv.org/abs/2303.00282) for the whole story.
-
-## Table of contents
-* [Introduction](#introduction)
-* [Usage](#usage)
-* [Citation](#citation)
-* [Contact](#contact)
+FedScore is a framework for developing scoring systems across multiple sites in a privacy-preserving way. The R and Python code provided in this repository implements the proposed FedScore algorithm.
 
 ## Introduction
 
-Cross-institutional collaboration has gained popularity in recent years as a way to accelerate medical research and facilitate quality improvement. Federated learning (FL), sometimes referred to as distributed learning or distributed algorithms, can avoid data sharing by collectively training algorithms without exchanging patient-level data. There exist many applications of FL for medical image data, most of which use black box models from computer vision. Interpretable models, on the contrary, have fewer instances of FL applications despite their popularity in clinical research.
+Cross-institutional collaboration has gained popularity in recent years as a way to accelerate medical research and facilitate quality improvement. Federated learning (FL) can avoid data sharing by collectively training algorithms without exchanging patient-level data. However, most FL applications in medical image data use black box models from computer vision. Interpretable models, on the contrary, have fewer instances of FL applications despite their popularity in clinical research.
 
-As a type of interpretable risk scoring model, scoring systems have been employed in practically every diagnostic area of medicine. Regardless of diverse development strategies, scoring systems have usually been created using singlesource data, limiting application at other sites if the development data has insufficient sample size or is not representative. Although it is possible to develop scoring systems on pooled data the process of doing such pooling, as noted previously, is time consuming and difficult to achieve due to privacy restrictions. As a result, frameworks for building scoring systems in a
-federated manner are needed to overcome such difficulties. 
+As a type of interpretable risk scoring model, scoring systems have been employed in practically every diagnostic area of medicine. However, scoring systems have usually been created using single-source data, limiting application at other sites if the development data has insufficient sample size or is not representative. Although it is possible to develop scoring systems on pooled data, the process of doing such pooling is time-consuming and difficult to achieve due to privacy restrictions. 
 
-To fill this gap, we propose FedScore, a first-of-its-kind framework for building federated scoring systems across multiple sites. 
+To fill this gap, we propose FedScore, a first-of-its-kind framework for building federated scoring systems across multiple sites. The figure below provides a high-level overview of the FedScore algorithm:
 
-<div class="figure" style="text-align: center">
-
-<img src="figures/Figure1.jpg" width="80%"/>
-
-</div>
+![Figure 1: Overview of the FedScore algorithm](figures/Figure1.jpg)
 
 ## Usage
 
-#### 1. Install 
+### System requirements
 
-R: 'AutoScore', 'tidyverse', 'ggplot2', 'mle.tools', 'rjson'
+To run the R and Python code, you will need:
 
-Python: 'sys'
+- R packages: 'AutoScore', 'tidyverse', 'ggplot2', 'mle.tools', 'rjson'
+- Python packages: 'sys'
 
-#### 2. Run demo.R
+### Running the demo
 
-Please follow step-by-step instructions in 'demo.R'.
-
-- For demonstration purpose, a sample dataset obtained from the Medical Information Mart for Intensive Care ([MIMIC-IV](https://physionet.org/content/mimiciv/1.0/) and [MIMIC-IV-ED](https://physionet.org/content/mimic-iv-ed/1.0/)) is used. See data pre-processing details at https://github.com/nliulab/mimic4ed-benchmark
+To run the demo, follow the step-by-step instructions provided in `demo.R`. For demonstration purposes, a sample dataset obtained from the Medical Information Mart for Intensive Care ([MIMIC-IV](https://physionet.org/content/mimiciv/1.0/) and [MIMIC-IV-ED](https://physionet.org/content/mimic-iv-ed/1.0/)) is used. See data pre-processing details at https://github.com/nliulab/mimic4ed-benchmark.
 
 
 ## Citation
