@@ -20,7 +20,7 @@ To fill this gap, we propose FedScore, a first-of-its-kind framework for buildin
 
 <div class="figure" style="text-align: center">
 
-<img src="figures/graphical_abstract.jpg" width="70%"/>
+<img src="figures/Figure1.pdf" width="70%"/>
 
 </div>
 
