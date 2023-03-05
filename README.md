@@ -11,16 +11,18 @@ R and Python code for our proposed FedScore framework for generation of scoring 
 
 ## Introduction
 
-Clinical decisions in the emergency department play an important role in optimizing urgent patient care and scarce resources. And unsurprisingly, machine learning based clinical prediction models have been widely adopted in the field of emergency medicine.
+Cross-institutional collaboration has gained popularity in recent years as a way to accelerate medical research and facilitate quality improvement. Federated learning (FL), sometimes referred to as distributed learning or distributed algorithms, can avoid data sharing by collectively training algorithms without exchanging patient-level data. There exist many applications of FL for medical image data, most of which use black box models from computer vision. Interpretable models, on the contrary, have fewer instances of FL applications despite their popularity in clinical research.
 
-In parellel to the rise of clinical prediction models, there has also been a rapid increase in adoption of Electronic Health records (EHR) for patient data. The Medical Information Mart for Intensive Care ([MIMIC)-IV]((https://physionet.org/content/mimiciv/1.0/)) and [MIMIC-IV-ED](https://physionet.org/content/mimic-iv-ed/1.0/) are examples of EHR databases that contain a vast amount of patient information.
+As a type of interpretable risk scoring model, scoring systems have been employed in practically every diagnostic area of medicine. Regardless of diverse development strategies, scoring systems have usually been created using singlesource data, limiting application at other sites if the development data has insufficient sample size or is not representative. Although it is possible to develop scoring systems on pooled data the process of doing such pooling, as noted previously, is time consuming and difficult to achieve due to privacy restrictions. As a result, frameworks for building scoring systems in a
+federated manner are needed to overcome such difficulties. 
 
-There is therefore a need for publicly available benchmark datasets and models that allow researchers to produce comparable and reproducible results. 
+To fill this gap, we propose FedScore, a first-of-its-kind framework for building federated scoring systems across multiple sites. 
 
-For the previous iteration of the MIMIC database (MIMIC-III), several benchmark pipelines have published in [2019](https://github.com/YerevaNN/mimic3-benchmarks) and [2020](https://github.com/MLforHealth/MIMIC_Extract).
+<div class="figure" style="text-align: center">
 
-Here, we present a workflow that generates a benchmark dataset from the MIMIC-IV-ED database and constructs benchmark models for three ED-based prediction tasks.
+<img src="figures/graphical_abstract.jpg" width="70%"/>
 
+</div>
 
 ## Usage
 
