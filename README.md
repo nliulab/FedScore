@@ -38,10 +38,7 @@ Python: 'sys'
 
 Please follow step-by-step instructions in 'demo.R'.
 
-- For demonstration purpose, a sample dataset obtained from the Medical Information Mart for Intensive Care ([MIMIC)-IV]((https://physionet.org/content/mimiciv/1.0/)) and [MIMIC-IV-ED](https://physionet.org/content/mimic-iv-ed/1.0/) is used. 
-See data pre-processing details at https://github.com/nliulab/mimic4ed-benchmark
-
--  
+- For demonstration purpose, a sample dataset obtained from the Medical Information Mart for Intensive Care ([MIMIC-IV](https://physionet.org/content/mimiciv/1.0/) and [MIMIC-IV-ED](https://physionet.org/content/mimic-iv-ed/1.0/)) is used. See data pre-processing details at https://github.com/nliulab/mimic4ed-benchmark
 
 
 ## Citation
