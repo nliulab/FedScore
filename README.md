@@ -1,7 +1,9 @@
 FedScore: A privacy-preserving framework for federated scoring system development
 =========================
 
-R and Python code for our proposed FedScore framework for generation of scoring systems across multiple sites in a privacy preserving way. See our new [Preprint](https://arxiv.org/abs/2303.00282) for the whole story.
+R and Python code for the proposed FedScore for generation of scoring systems across multiple sites in a privacy preserving way. 
+<br>
+See our new [Preprint](https://arxiv.org/abs/2303.00282) for the whole story.
 
 ## Table of contents
 * [Introduction](#introduction)
@@ -20,16 +22,25 @@ To fill this gap, we propose FedScore, a first-of-its-kind framework for buildin
 
 <div class="figure" style="text-align: center">
 
-<img src="figures/Figure1.png" width="80%"/>
+<img src="figures/Figure1.jpg" width="80%"/>
 
 </div>
 
 ## Usage
 
-The structure of this repository is detailed as follows:
+#### 1. Install 
 
-- `Benchmark_scripts/...` contains the scripts for benchmark dataset generation (master_data.csv).
-- `Benchmark_scripts/...` contains the scripts for building the various task-specific benchmark models.
+R: 'AutoScore', 'tidyverse', 'ggplot2', 'mle.tools', 'rjson'
+
+Python: 'sys'
+
+#### 2. Run demo.R
+
+Please follow step-by-step instructions in 'demo.R'.
+
+- For demonstration purpose, a sample dataset obtained from the Medical Information Mart for Intensive Care ([MIMIC)-IV]((https://physionet.org/content/mimiciv/1.0/)) and [MIMIC-IV-ED](https://physionet.org/content/mimic-iv-ed/1.0/) is used. 
+See data pre-processing details at https://github.com/nliulab/mimic4ed-benchmark
+
 -  
 
 
