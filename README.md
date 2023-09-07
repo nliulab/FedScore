@@ -30,7 +30,7 @@ To run the demo, follow the step-by-step instructions provided in `demo.R`. For 
 
 ## Citation
 
-Li, S., Ning, Y., Ong, M. E. H., Chakraborty, B., Hong, C., Xie, F., ... & Liu, N. (2023). FedScore: A privacy-preserving framework for federated scoring system development. arXiv preprint arXiv:2303.00282.
+Li, S., Ning, Y., Ong, M.E., Chakraborty, B., Hong, C., Xie, F., ... & Liu, N. (2023). FedScore: A privacy-preserving framework for federated scoring system development. Journal of Biomedical Informatics, 2023,104485, ISSN 1532-0464 https://doi.org/10.1016/j.jbi.2023.104485
 
 ## Contact
 
