@@ -2,7 +2,7 @@
 
 FedScore is a framework for developing scoring systems across multiple sites in a privacy-preserving way. The R and Python code provided in this repository implements the proposed FedScore algorithm.
 
-See our new [Preprint](https://arxiv.org/abs/2303.00282) for the whole story.
+See our newly published [article](https://doi.org/10.1016/j.jbi.2023.104485) for the whole story.
 
 ## Introduction
 
