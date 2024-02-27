@@ -10,9 +10,30 @@ Cross-institutional collaboration has gained popularity in recent years as a way
 
 As a type of interpretable risk scoring model, scoring systems have been employed in practically every diagnostic area of medicine. However, scoring systems have usually been created using single-source data, limiting application at other sites if the development data has insufficient sample size or is not representative. Although it is possible to develop scoring systems on pooled data, the process of doing such pooling is time-consuming and difficult to achieve due to privacy restrictions. 
 
-To fill this gap, we propose FedScore, a first-of-its-kind framework for building federated scoring systems across multiple sites. The figure below provides a high-level overview of the FedScore algorithm:
+To fill this gap, we propose FedScore, a first-of-its-kind framework for building federated scoring systems across multiple sites. 
+
+
+The figure below provides a high-level overview of the FedScore algorithm:
 
 ![Figure 1: Overview of the FedScore algorithm](figures/Figure1.jpg)
+
+## Versions
+
+FedScore is available in two programming languages, each catering to different FL frameworks (engineering-based & statistics-based). For a comprehensive overview, refer to the [review paper](https://doi.org/10.1093/jamia/ocad170) and [benchmarking study](https://arxiv.org/pdf/2311.03417.pdf).
+
+### R Version (This Repository)
+- **Programming Language:** R
+- **FL Algorithms (Model-Specific):** [ODAL2](https://doi.org/10.1093/jamia/ocz199), [dCLR](https://www.nature.com/articles/s41746-022-00615-8), [ODAC](https://doi.org/10.1093/jamia/ocaa044) & [ODACH](https://www.nature.com/articles/s41598-022-09069-0)
+- **FL Framework Type:** Statistics-Based
+- **Communication Efficiency:** One-shot
+
+### Python Version ([FedScore-Python Repository](https://github.com/nliulab/FedScore-Python))
+- **Programming Language:** Python
+- **FL Algorithms (Model-Agnostic):** [FedAvg](https://proceedings.mlr.press/v54/mcmahan17a/mcmahan17a.pdf) etc. (Availability consistent with the [Flower](https://flower.ai/) framework)
+- **FL Framework Type:** Engineering-Based
+- **Communication Efficiency:** Requires multiple rounds of communications
+
+In summary, choose the version based on your preferences and refer to the respective repositories for detailed documentation and implementation details.
 
 ## Usage
 
