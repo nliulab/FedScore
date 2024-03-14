@@ -4,8 +4,6 @@ FedScore is a framework for developing scoring systems across multiple sites in 
 
 Discover the full story in the FedScore [paper](https://doi.org/10.1016/j.jbi.2023.104485) for binary outcomes, and explore our latest [preprint](https://arxiv.org/abs/2403.05229) where we extend FedScore to include survival outcomes.
 
-
-
 ## Introduction
 
 Cross-institutional collaboration has gained popularity in recent years as a way to accelerate medical research and facilitate quality improvement. Federated learning (FL) can avoid data sharing by collectively training algorithms without exchanging patient-level data. However, most FL applications in medical image data use black box models from computer vision. Interpretable models, on the contrary, have fewer instances of FL applications despite their popularity in clinical research.
@@ -17,6 +15,7 @@ To fill this gap, we propose FedScore, a first-of-its-kind framework for buildin
 The figure below provides a high-level overview of the FedScore algorithm:
 
 ![Figure 1: Overview of the FedScore algorithm](workflow.jpg)
+
 ## Versions
 
 FedScore is available in two programming languages, each catering to different FL frameworks (engineering-based & statistics-based). For a comprehensive overview, refer to the [review paper](https://doi.org/10.1093/jamia/ocad170) and [benchmarking study](https://arxiv.org/pdf/2311.03417.pdf).
@@ -56,5 +55,4 @@ Li, S., Ning, Y., Ong, M.E., Chakraborty, B., Hong, C., Xie, F., ... & Liu, N. (
 ## Contact
 
 - Siqi Li (Email: <siqili@u.duke.nus.edu>)
-
 - Nan Liu (Email: <liu.nan@duke-nus.edu.sg>)
