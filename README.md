@@ -14,11 +14,8 @@ As a type of interpretable risk scoring model, scoring systems have been employe
 
 To fill this gap, we propose FedScore, a first-of-its-kind framework for building federated scoring systems across multiple sites. 
 
-
 The figure below provides a high-level overview of the FedScore algorithm:
 
-![Figure 1: Overview of the FedScore algorithm](figures/Figure1.jpg)
-=======
 ![Figure 1: Overview of the FedScore algorithm](workflow.jpg)
 ## Versions
 
