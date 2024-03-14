@@ -1,0 +1,8 @@
+[1] "(homo) generating auc for Site1 validation for model fed"
+Integrated AUC by all time points: 0.884 (0.878-0.893)
+C_index:  0.795 (0.788-0.804) 
+The AUC(t) are shown as bwlow:
+[1] "(homo) generating auc for Site2 validation for model fed"
+Integrated AUC by all time points: 0.881 (0.872-0.892)
+C_index:  0.79 (0.78-0.801) 
+The AUC(t) are shown as bwlow:
