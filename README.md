@@ -14,7 +14,7 @@ To fill this gap, we propose FedScore, a first-of-its-kind framework for buildin
 
 The figure below provides a high-level overview of the FedScore algorithm:
 
-![Figure 1: Overview of the FedScore algorithm](workflow.jpg)
+![Figure 1: Overview of the FedScore algorithm (survival outcomes)](workflow.jpg)
 
 ## Versions
 
