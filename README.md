@@ -57,4 +57,5 @@ Li, S., Ning, Y., Ong, M.E., Chakraborty, B., Hong, C., Xie, F., ... & Liu, N. (
 ## Contact
 
 - Siqi Li (Email: <siqili@u.duke.nus.edu>)
+- Qiming Wu (Email: <wuqiming@duke-nus.edu.sg>)
 - Nan Liu (Email: <liu.nan@duke-nus.edu.sg>)
