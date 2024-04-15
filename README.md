@@ -2,7 +2,7 @@
 
 FedScore is a framework for developing scoring systems across multiple sites in a privacy-preserving way. The R and Python code provided in this repository implements the proposed FedScore algorithm.
 
-Discover the full story in the FedScore [paper](https://doi.org/10.1016/j.jbi.2023.104485) for binary outcomes, and explore our latest [preprint](https://arxiv.org/abs/2403.05229) where we extend FedScore to include survival outcomes.
+Discover the full story in the FedScore [paper](https://doi.org/10.1016/j.jbi.2023.104485) for binary outcomes, and explore our latest [preprint](https://arxiv.org/abs/2403.05229) where we extend FedScore to include survival outcomes. The implementation of FedScore on two real-world EHR datasets is available in this [tiny paper](https://openreview.net/forum?id=c4GVRbEx1g).
 
 ## Introduction
 
