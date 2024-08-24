@@ -54,6 +54,8 @@ Li, S., Ning, Y., Ong, M.E., Chakraborty, B., Hong, C., Xie, F., ... & Liu, N. (
 
 Li, S., Shang, Y., Wang, Z., Wu, Q., Hong, C., Ning, Y., ... & Liu, N. (2024). Developing Federated Time-to-Event Scores Using Heterogeneous Real-World Survival Data. arXiv preprint arXiv:2403.05229.
 
+Wu, Q., Li, S., Miao, D., Shang, Y., Li, X. and Liu, N., Evaluating the Efficacy of Federated Scoring Systems with Heterogeneous Electronic Health Records. In The Second Tiny Papers Track at ICLR 2024.
+
 ## Contact
 
 - Siqi Li (Email: <siqili@u.duke.nus.edu>)
