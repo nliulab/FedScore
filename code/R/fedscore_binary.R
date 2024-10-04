@@ -464,7 +464,7 @@ get_federatedLR <- function(method = 1, data_matrix, sitenameL, sitenameR_list, 
   dat <- data_matrix
   
   ####### get initial beta
-  beta_local <- get_bbar(modelIndex, site_list = c(sitenameL, sitenameR_list), p = ncol(dat))
+  beta_local <- get_beta(dat)
   print(beta_local)
 
   ####### get info from remote sites by reading ranking_intermediate.json

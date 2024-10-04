@@ -13,27 +13,9 @@ source("../../code/R/fedscore_binary.R")
 source("../../code/R/helpers_binary.R")
 
 ##### Import data
-dat1 <- read.csv("../../data/binary/sample1.csv")
-dat2 <- read.csv("../../data/binary/sample2.csv")
-nrow(dat1) # sample size 14000
-nrow(dat2) # sample size 6000
-
-##### Format data
-var <- colnames(dat1)[-1]
-dat1 <- dat1[, var]
-dat2 <- dat2[, var]
-factor_names <- c()
-dat1[factor_names] <- lapply(dat1[factor_names], factor)
-dat2[factor_names] <- lapply(dat2[factor_names], factor)
-
-##### Partition data at each site into training, validation and testing sets
-spec <- c(train = 0.7, test = 0.2, validate = 0.1)
-# site1:
-g <- sample(cut(seq(nrow(dat1)), nrow(dat1)*cumsum(c(0, spec)), labels = names(spec)))
-dat1_split <- split(dat1, g)
-# site2:
-g <- sample(cut(seq(nrow(dat2)), nrow(dat2)*cumsum(c(0, spec)), labels = names(spec)))
-dat2_split <- split(dat2, g)
+# Read data for two sites (split into train, validation and test sets)
+dat1_split <- readRDS("../../data/binary/site1.rds")
+dat2_split <- readRDS("../../data/binary/site2.rds")
 
 
 ##### Module 1: Obtain federated ranking
