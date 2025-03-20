@@ -260,6 +260,7 @@ run_dCLR_cat <- function(site1, site2, uni_cut, var_list) {
   df$site <- c(rep(1, nrow(site1)), rep(2, nrow(site2)))
   n <- c(nrow(site1), nrow(site2))
   df[var_list] <- lapply(df[var_list], as.factor)
+  print(df)
 
   df_encoded <- model.matrix(~ ., data = df[, c(var_list, "site")])
   
